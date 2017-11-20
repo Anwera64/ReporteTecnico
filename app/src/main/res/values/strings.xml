@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">TrabajoDatos</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_heart">Favorito</string>
+    <string name="action_picker">Picker</string>
+    <string name="action_heart_outline">Favorito</string>
+    <string name="no_available">Opción no disponible</string>
+    <string name="ok">OK</string>
+    <string name="edit">Editar</string>
+
+    <string name="hintName">Nombre</string>
+    <string name="hintLastname">Apellidos</string>
+    <string name="hintDocument">DNI</string>
+    <string name="hintBirth">Fecha de Nacimiento</string>
+    <string name="hintGrade">Grado</string>
+    <string name="hintEmail">Correo Electrónico</string>
+    <string name="required">Campo requerido</string>
+    <string name="email_invalido">Correo inválido</string>
+
+    <string name="action_filter">Filtrar</string>
+    <string name="action_doughnut">Gráfico</string>
+
+    <string name="lorem_ipsum_title">Lorem ipsum dolor</string>
+    <string name="lorem_ipsum_description">Lorem ipsum dolor sit amet</string>
+    <string name="lorem_ipsum_short_text">Lorem ipsum dolor sit amet,consectetur adipiscing elit.Pellentesque ultricies sagittis nunc, vel aliquam tellus blandit sit amet. Donec pretium eleifend orci,sed bibendum</string>
+    <string name="lorem_ipsum_large_text">Lorem ipsum dolor sit amet, primis nonumes corrumpit ei sed, te nibh lobortis pro. Mea errem efficiantur ad. Quot albucius ad mea, ut eum vitae eligendi accusata. Vocent democritum reformidans ut mea, est in summo alterum. Animal audire duo ne, mandamus constituam ne sit, ad maiestatis mnesarchum persequeris est. Ferri audiam in mea, mel eu oratio munere iisque, gloriatur assueverit interpretaris ei nec. Quo eruditi scaevola concludaturque id, eos veniam laudem melius cu.
+    Eam eu elit dicant, autem feugiat his no. Meis summo aeterno ei vix. Eos ea gloriatur adolescens dissentiunt. Ius vitae iisque tacimates id. Qui ne alterum omittam, nec id quod meliore deseruisse. Qui ullum aliquid ut, posse fastidii omnesque ei mei. Cu per saepe imperdiet, usu mandamus splendide ne, ut dicat dolore prompta mel.
+    Labores expetenda incorrupte cum no, nulla labores vivendum sea ne, tantas forensibus has ea. Est ea putant erroribus. Ad congue albucius iudicabit pri, vix agam adipisci omittantur ut, ut duo sensibus accusamus urbanitas. Pro nemore dictas accumsan no.</string>
+    <string name="title_activity_preview_column_chart">PreviewColumnChartActivity</string>
+
+
+    <!-- Spinners -->
+
+    <string name="error_spinner">Tiene que seleccionar una alternativa</string>
+    <string-array name="contenido_spinner_grado">
+        <item>Selecciona un grado</item>
+        <item>4to Grado de Secundaria</item>
+        <item>5to Grado de Secundaria</item>
+        <item>Bachillerato</item>
+        <item>Otros</item>
+    </string-array>
+
+    <string-array name="contenido_spinner_cargo_colegio">
+        <item>Selecciona un cargo</item>
+        <item>Alumno</item>
+        <item>Profesor</item>
+    </string-array>
+
+    <string-array name="contenido_spinner_cargo_universidad">
+        <item>Selecciona un cargo</item>
+        <item>Apuntador</item>
+        <item>Asesor</item>
+        <item>Computo</item>
+        <item>Operador</item>
+        <item>Pregonero</item>
+        <item>SAB</item>
+        <item>Otro</item>
+    </string-array>
+
+</resources>
