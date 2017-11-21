@@ -34,8 +34,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         PeopleModel contact = contacts.get(position);
 
-        holder.tvLastName.setText(contact.getName());
-        holder.tvName.setText(contact.getLastname());
+        holder.tvAge.setText(contact.getAge());
+        holder.tvName.setText(contact.getFullName());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         @BindView(R.id.tvTitle)
         TextView tvName;
         @BindView(R.id.tvSubTitle)
-        TextView tvLastName;
+        TextView tvAge;
 
         public ViewHolder(View itemView) {
             super(itemView);
