@@ -62,6 +62,21 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/layoutCellphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/v_metric_04">
+
+                <EditText
+                    android:id="@+id/etCellphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hintCellphone"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
 
         </LinearLayout>
 

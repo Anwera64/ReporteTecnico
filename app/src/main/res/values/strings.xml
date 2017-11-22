@@ -10,6 +10,7 @@
     <string name="ok">OK</string>
     <string name="edit">Editar</string>
 
+    <string name="hintCellphone">Telefono</string>
     <string name="hintName">Nombre</string>
     <string name="hintLastname">Apellidos</string>
     <string name="hintDocument">DNI</string>
