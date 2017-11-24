@@ -9,7 +9,9 @@ import java.util.ArrayList;
  */
 
 public interface ResponseListener {
-    void onSuccess(ArrayList<PeopleModel> contacts);
+    void onResponseSuccess(ArrayList<PeopleModel> contacts);
 
-    void onError(String error);
+    void onResponseError(String error);
+
+    void onDeleteSuccess();
 }

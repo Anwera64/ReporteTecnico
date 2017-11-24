@@ -35,6 +35,9 @@
     <!-- Spinners -->
 
     <string name="error_spinner">Tiene que seleccionar una alternativa</string>
+    <string name="nInternet">No internet</string>
+    <string name="nContacts">No hay contactos</string>
+    <string name="error">Hubo un error</string>
     <string-array name="contenido_spinner_grado">
         <item>Selecciona un grado</item>
         <item>4to Grado de Secundaria</item>

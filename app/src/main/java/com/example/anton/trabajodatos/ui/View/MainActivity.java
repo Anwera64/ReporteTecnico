@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.anton.trabajodatos.Data.Model.PeopleModel;
 import com.example.anton.trabajodatos.Data.Source.MongoService;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
     RecyclerView recyclerView;
     @BindView(R.id.refresh)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.empty)
+    TextView tvEmpty;
 
     MainPresenter mPresenter;
     ContactAdapter adapter;
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
         setSupportActionBar(toolbar);
 
         mPresenter = new MainPresenter(this);
-        adapter = new ContactAdapter();
+        adapter = new ContactAdapter(this);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -58,20 +62,34 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
     }
 
     @Override
-    public void onSuccess(ArrayList<PeopleModel> contacts) {
-        swipeRefreshLayout.setRefreshing(true);
-        adapter.setContacts(contacts);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+    public void onResponseSuccess(ArrayList<PeopleModel> contacts) {
+        if (contacts.isEmpty()) {
+            tvEmpty.setText(R.string.nContacts);
+            tvEmpty.setVisibility(View.VISIBLE);
+        } else {
+            tvEmpty.setVisibility(View.GONE);
+            adapter.setContacts(contacts);
+
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter);
+        }
         swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
-    public void onError(String error) {
+    public void onResponseError(String error) {
+        swipeRefreshLayout.setRefreshing(false);
+        tvEmpty.setText(R.string.error);
+        tvEmpty.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void onDeleteSuccess() {
+        download();
     }
 
     private void download() {
+        swipeRefreshLayout.setRefreshing(true);
         new MongoService().getContacts(this);
     }
 

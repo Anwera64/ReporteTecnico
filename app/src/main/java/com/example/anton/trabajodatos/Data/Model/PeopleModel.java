@@ -22,7 +22,9 @@ public class PeopleModel implements Comparable<PeopleModel>, Serializable {
     @SerializedName("cellphone")
     @Expose
     private String cellphone;
-    private String id;
+    @SerializedName("_id")
+    @Expose
+    private ID id;
 
     public PeopleModel(String name, String lastname, String cellphone) {
         this.name = name;
@@ -39,11 +41,7 @@ public class PeopleModel implements Comparable<PeopleModel>, Serializable {
     }
 
     public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        return id.getId();
     }
 
     public String getFullName() {
@@ -57,5 +55,14 @@ public class PeopleModel implements Comparable<PeopleModel>, Serializable {
     @Override
     public int compareTo(@NonNull PeopleModel another) {
         return this.getFullName().compareToIgnoreCase(another.getFullName());
+    }
+
+    public static class ID {
+        @SerializedName("$oid")
+        private String id;
+
+        public String getId() {
+            return id;
+        }
     }
 }

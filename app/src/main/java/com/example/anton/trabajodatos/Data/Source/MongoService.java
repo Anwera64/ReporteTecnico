@@ -41,12 +41,12 @@ public class MongoService {
         call.enqueue(new Callback<ArrayList<PeopleModel>>() {
             @Override
             public void onResponse(Call<ArrayList<PeopleModel>> call, Response<ArrayList<PeopleModel>> response) {
-                listener.onSuccess(response.body());
+                listener.onResponseSuccess(response.body());
             }
 
             @Override
             public void onFailure(Call<ArrayList<PeopleModel>> call, Throwable t) {
-                listener.onError(t.toString());
+                listener.onResponseError(t.toString());
             }
         });
     }
@@ -67,6 +67,24 @@ public class MongoService {
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.v("POST", "No Funciona");
                 listener.onError(t.toString());
+            }
+        });
+    }
+
+    public void deleteContact(String id, final ResponseListener listener) {
+        RestClient restClient = retrofit.create(RestClient.class);
+
+        Call<Void> call = restClient.deleteContact(id);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                listener.onDeleteSuccess();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onResponseError(t.toString());
             }
         });
     }
