@@ -1,9 +1,7 @@
 package com.example.anton.trabajodatos.ui.Adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.anton.trabajodatos.Data.Model.PeopleModel;
 import com.example.anton.trabajodatos.R;
+import com.example.anton.trabajodatos.ui.View.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,10 +28,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     private ArrayList<PeopleModel> contacts;
     private Context context;
+    private String selectedID;
+    private ArrayList<ViewHolder> holders;
 
     public ContactAdapter(Context context) {
         contacts = new ArrayList<>();
         this.context = context;
+        holders = new ArrayList<>();
     }
 
     @Override
@@ -47,21 +49,42 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final PeopleModel contact = contacts.get(position);
 
+        holders.add(holder);
+        holder.id = contact.getId();
+        final MainActivity main = (MainActivity) context;
+
         holder.tvAge.setText(String.valueOf(contact.getCellphone()));
         holder.tvName.setText(contact.getFullName());
         holder.root.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 if (holder.selected) {
-                    view.setBackgroundColor(Color.GRAY);
+                    view.setBackgroundColor(Color.WHITE);
+                    main.hideDelete();
+
                 } else {
-                    view.setBackgroundColor(ResourcesCompat.getColor());
+                    selectedID = contact.getId();
+                    selectView();
+                    main.showDelete();
                 }
                 holder.selected = !holder.selected;
                 return false;
             }
         });
 
+    }
+
+    private void selectView() {
+        for (ViewHolder holder : holders) {
+            if (holder.selected && !holder.id.equals(selectedID)) {
+                holder.root.setBackgroundColor(Color.WHITE);
+                holder.selected = !holder.selected;
+            } else if (holder.id.equals(selectedID)) {
+                holder.root
+                        .setBackgroundColor(ResourcesCompat
+                                .getColor(context.getResources(), R.color.grey_300, null));
+            }
+        }
     }
 
     @Override
@@ -74,9 +97,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         Collections.reverse(this.contacts);
     }
 
+    public String getSelectedID() {
+        return selectedID;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         boolean selected;
+        String id;
 
         @BindView(R.id.tvTitle)
         TextView tvName;

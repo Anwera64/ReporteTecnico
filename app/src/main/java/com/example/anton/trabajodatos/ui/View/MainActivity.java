@@ -2,6 +2,7 @@ package com.example.anton.trabajodatos.ui.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.empty)
     TextView tvEmpty;
+    @BindView(R.id.fab2)
+    FloatingActionButton fab2;
 
     MainPresenter mPresenter;
     ContactAdapter adapter;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
 
         mPresenter = new MainPresenter(this);
         adapter = new ContactAdapter(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -66,11 +70,10 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
         if (contacts.isEmpty()) {
             tvEmpty.setText(R.string.nContacts);
             tvEmpty.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(new ContactAdapter(this));
         } else {
             tvEmpty.setVisibility(View.GONE);
             adapter.setContacts(contacts);
-
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
         }
         swipeRefreshLayout.setRefreshing(false);
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
     @Override
     public void onDeleteSuccess() {
         download();
+        hideDelete();
     }
 
     private void download() {
@@ -97,5 +101,18 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
     protected void onResume() {
         super.onResume();
         download();
+    }
+
+    public void showDelete() {
+        fab2.setVisibility(View.VISIBLE);
+    }
+
+    public void hideDelete() {
+        fab2.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.fab2)
+    public void onDeleteClick() {
+        new MongoService().deleteContact(adapter.getSelectedID(), this);
     }
 }
