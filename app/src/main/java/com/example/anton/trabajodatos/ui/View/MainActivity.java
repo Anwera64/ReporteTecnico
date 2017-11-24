@@ -114,5 +114,6 @@ public class MainActivity extends AppCompatActivity implements ResponseListener 
     @OnClick(R.id.fab2)
     public void onDeleteClick() {
         new MongoService().deleteContact(adapter.getSelectedID(), this);
+        hideDelete();
     }
 }
